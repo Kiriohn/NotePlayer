@@ -1,5 +1,7 @@
 # NotePlayer
- A tool used to preview the tone frequency used in programming Arduino or any microcontroller projects
+ A simple tool used to preview the tone frequency used in programming Arduino or any microcontroller projects.
+
+
 
 
 ## License
