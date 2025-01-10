@@ -104,14 +104,15 @@ def open_about_page():
     about_window.title("About")
     about_window.geometry("400x300")
     about_window.resizable(False, False)
+    about_window.iconbitmap(cfg.ICON_PATH)
 
     # Add a label for the About Page content
     about_content = (
-        "About This Application\n\n"
+        "About NotePlayer\n\n"
         "This application is designed using Python and Tkinter.\n"
-        "It demonstrates the use of graphical interfaces to\n"
-        "create user-friendly applications. Features include\n"
-        "an About Page, a Help Page, and core functionalities."
+        "It is a simple tool used to preview the tone frequency\n" 
+        "used in programming Arduino or any microcontroller projects.\n\n\n"
+        "NotePlayer © 2025 by Ed John Roxas is licensed under CC BY-NC-SA 4.0 \n"
     )
     about_label = tk.Label(about_window, text=about_content, justify="left", padx=10, pady=10)
     about_label.pack(fill="both", expand=True)
@@ -126,18 +127,14 @@ def open_help_page():
     help_window.title("Help")
     help_window.geometry("400x300")
     help_window.resizable(False, False)
+    help_window.iconbitmap(cfg.ICON_PATH)
 
     # Add a label for the Help Page content
     help_content = (
-        "Help and Support\n\n"
+        "Help\n\n"
         "1. How to Use:\n"
         "   - Navigate through the application using buttons.\n"
         "   - Access specific features as described on-screen.\n\n"
-        "2. Common Issues:\n"
-        "   - If the application doesn't respond, restart it.\n"
-        "   - Ensure Python is installed properly on your system.\n\n"
-        "3. Contact:\n"
-        "   - For further assistance, email us at support@example.com."
     )
     help_label = tk.Label(help_window, text=help_content, justify="left", padx=10, pady=10)
     help_label.pack(fill="both", expand=True)
@@ -165,15 +162,9 @@ file_menu.add_separator()
 file_menu.add_command(label="Exit", command=root.quit)
 menu.add_cascade(label="File", menu=file_menu)
 
-# Create About menu
-about_menu = tk.Menu(menu, tearoff=0)
-about_menu.add_command(label="About", command=open_about_page)
-menu.add_cascade(label="About", menu=about_menu)
+menu.add_command(label="About", command=open_about_page)
 
-# Create Help menu
-help_menu = tk.Menu(menu, tearoff=0)
-help_menu.add_command(label="Help", command=open_help_page)
-menu.add_cascade(label="Help", menu=help_menu)
+menu.add_command(label="Help", command=open_help_page)
 
 # Set menu bar to the root window
 root.config(menu=menu)
