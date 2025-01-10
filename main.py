@@ -36,11 +36,15 @@ def play_notes():
     # Play the sequence of notes
     note.play_sequence(note_sequence)
 
+# Function to export the program for arduino
+def export_prog():
+    pass
+
 # Set up the GUI
 root = tk.Tk()
 root.title("NotePlayer  V1.0")
 root.geometry("400x600")
-root.resizable(False, True)
+root.resizable(False, False)
 root.iconbitmap(cfg.ICON_PATH)
 
 # Create menu bar
@@ -91,6 +95,9 @@ save_button.pack(side=tk.LEFT, padx=5)
 
 clear_button = tk.Button(button_frame, text="Clear", command=clear_text)
 clear_button.pack(side=tk.LEFT, padx=5)
+
+export_button = tk.Button(button_frame, text="Export", command=export_prog)
+export_button.pack(side=tk.LEFT, padx=5)
 
 # Run the GUI
 root.mainloop()
