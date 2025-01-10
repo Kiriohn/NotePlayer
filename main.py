@@ -131,10 +131,18 @@ def open_help_page():
 
     # Add a label for the Help Page content
     help_content = (
-        "Help\n\n"
-        "1. How to Use:\n"
-        "   - Navigate through the application using buttons.\n"
-        "   - Access specific features as described on-screen.\n\n"
+        "How to Use:\n\n"
+        "1. Input Notes\n"
+        "   - Enter notes and durations in the format:\n"
+        "     C4 150 E4 75 G4 150\n\n"
+        "2. Preview Notes\n"
+        "   - Press Play to preview the melody directly in the application.\n\n"
+        "3. Generate Code\n"
+        "   - Click Generate Code to create Arduino-compatible code.\n\n"
+        "4. Save/Load Files\n"
+        "   - Use the File menu to save your melody or load a saved one.\n\n"
+        "5. Copy Code\n"
+        "   - Click Copy to copy the generated code to the clipboard.\n\n"
     )
     help_label = tk.Label(help_window, text=help_content, justify="left", padx=10, pady=10)
     help_label.pack(fill="both", expand=True)
