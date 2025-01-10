@@ -2,8 +2,6 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from includes import config as cfg
 from includes import note
-from includes import about
-from includes import help
 from includes import createcode
 
 # Function to clear the text box
@@ -99,6 +97,56 @@ def copy_code():
     status["text"] = "Code snippet copied to clipboard"
     root.after(2000, lambda: status.config(text="NotePlayer v1.0"))
 
+
+def open_about_page():
+    """Creates and displays the About Page."""
+    about_window = tk.Toplevel()
+    about_window.title("About")
+    about_window.geometry("400x300")
+    about_window.resizable(False, False)
+
+    # Add a label for the About Page content
+    about_content = (
+        "About This Application\n\n"
+        "This application is designed using Python and Tkinter.\n"
+        "It demonstrates the use of graphical interfaces to\n"
+        "create user-friendly applications. Features include\n"
+        "an About Page, a Help Page, and core functionalities."
+    )
+    about_label = tk.Label(about_window, text=about_content, justify="left", padx=10, pady=10)
+    about_label.pack(fill="both", expand=True)
+
+    # Add a close button
+    close_button = tk.Button(about_window, text="Close", command=about_window.destroy)
+    close_button.pack(pady=10)
+
+def open_help_page():
+    """Creates and displays the Help Page."""
+    help_window = tk.Toplevel()
+    help_window.title("Help")
+    help_window.geometry("400x300")
+    help_window.resizable(False, False)
+
+    # Add a label for the Help Page content
+    help_content = (
+        "Help and Support\n\n"
+        "1. How to Use:\n"
+        "   - Navigate through the application using buttons.\n"
+        "   - Access specific features as described on-screen.\n\n"
+        "2. Common Issues:\n"
+        "   - If the application doesn't respond, restart it.\n"
+        "   - Ensure Python is installed properly on your system.\n\n"
+        "3. Contact:\n"
+        "   - For further assistance, email us at support@example.com."
+    )
+    help_label = tk.Label(help_window, text=help_content, justify="left", padx=10, pady=10)
+    help_label.pack(fill="both", expand=True)
+
+    # Add a close button
+    close_button = tk.Button(help_window, text="Close", command=help_window.destroy)
+    close_button.pack(pady=10)
+
+
 # Set up the GUI
 root = tk.Tk()
 root.title("NotePlayer  V1.0")
@@ -119,12 +167,12 @@ menu.add_cascade(label="File", menu=file_menu)
 
 # Create About menu
 about_menu = tk.Menu(menu, tearoff=0)
-about_menu.add_command(label="About", command=lambda: note.about())
+about_menu.add_command(label="About", command=open_about_page)
 menu.add_cascade(label="About", menu=about_menu)
 
 # Create Help menu
 help_menu = tk.Menu(menu, tearoff=0)
-help_menu.add_command(label="Help", command=lambda: note.help())
+help_menu.add_command(label="Help", command=open_help_page)
 menu.add_cascade(label="Help", menu=help_menu)
 
 # Set menu bar to the root window
