@@ -49,7 +49,7 @@ def play_notes():
     input_sequence = text_box.get("1.0", tk.END)
     # Split the input by spaces
     note_sequence = input_sequence.split()
-    
+
     # Play the sequence of notes
     note.play_sequence(note_sequence)
 
@@ -73,15 +73,31 @@ def extract_notes_and_durations(input_data):
 
 # Export
 def export():
+    # Get content from the text box
+    code_content = text_box.get("1.0", tk.END).strip()
+
+    # Check if the code snippet is empty
+    if not code_content:
+        messagebox.showwarning("Nothing to export", "Please enter some notes to export.")
+        return  # Exit the function if the code snippet is empty
+
     # enable code snippet text box
     code_text.config(state=tk.NORMAL)
     
     notes, durations = extract_notes_and_durations(text_box.get("1.0", tk.END))
 
-    code_text.insert(tk.END, createcode.export_code(notes, durations))
+    code_text.insert(tk.END, createcode.new_export(notes, durations))
 
     # disable code snippet text box
     code_text.config(state=tk.DISABLED)
+
+# Function to copy the code snippet to the clipboard
+def copy_code():
+    root.clipboard_clear()
+    root.clipboard_append(code_text.get("1.0", tk.END))
+    # display status message for a few seconds
+    status["text"] = "Code snippet copied to clipboard"
+    root.after(2000, lambda: status.config(text="NotePlayer v1.0"))
 
 # Set up the GUI
 root = tk.Tk()
@@ -157,8 +173,12 @@ button_frame2 = tk.Frame(code_frame)
 button_frame2.pack(fill=tk.X, pady=(0, 10))  # Add some space below the buttons
 
 # Add a copy button for the code snippet
-copy_button = tk.Button(button_frame2, text="Copy", command=lambda: root.clipboard_append(code_text.get("1.0", tk.END)))
+copy_button = tk.Button(button_frame2, text="Copy", command=copy_code)
 copy_button.pack(side=tk.LEFT, padx=5)
+
+# Add a status bar at the bottom
+status = tk.Label(root, text="NotePlayer v1.0", bd=1, relief=tk.SUNKEN, anchor=tk.W)
+status.pack(side=tk.BOTTOM, fill=tk.X)
 
 # Run the GUI
 root.mainloop()
